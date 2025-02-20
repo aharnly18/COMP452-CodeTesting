@@ -2,6 +2,8 @@ import java.awt.*;
 import javax.swing.*;
 import com.formdev.flatlaf.*;
 
+// Hi Hannah!
+
 /**
  * Creates the UI for the guess-the-number game
  *
