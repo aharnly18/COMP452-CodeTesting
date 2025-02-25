@@ -5,6 +5,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringReader;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.SortedMap;
@@ -18,16 +19,13 @@ import java.util.TreeMap;
 public class StatsFile extends GameStats {
     public static final String FILENAME = "guess-the-number-stats.csv";
 
-
     // maps the number of guesses required to the number of games within
     // the past 30 days where the person took that many guesses
     private SortedMap<Integer, Integer> statsMap;
 
-    public StatsFile() {
+    public StatsFile(LocalDateTime limit, CSVReader csvReader) {
         statsMap = new TreeMap<>();
-        LocalDateTime limit = LocalDateTime.now().minusDays(30);
-
-        try (CSVReader csvReader = new CSVReader(new FileReader(FILENAME))) {
+        try {
             String[] record = null;
             while ((record = csvReader.readNext()) != null) {
                 // values should have the date and the number of guesses as the two fields
@@ -36,12 +34,10 @@ public class StatsFile extends GameStats {
                     if (result.timestamp.isAfter(limit)) {
                         statsMap.put(result.numGuesses, 1 + statsMap.getOrDefault(result.numGuesses, 0));
                     }
-                }
-                catch(NumberFormatException nfe){
+                } catch (NumberFormatException nfe) {
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
                     throw nfe;
-                }
-                catch(DateTimeParseException dtpe){
+                } catch (DateTimeParseException dtpe) {
                     // NOTE: In a full implementation, we would log this error and possibly alert the user
                     throw dtpe;
                 }
@@ -65,12 +61,24 @@ public class StatsFile extends GameStats {
         return (statsMap.isEmpty() ? 0 : statsMap.lastKey());
     }
 
-    public static void writeToCSV(GameResult gameResult) {
+    public static void append(GameResult gameResult) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(StatsFile.FILENAME, true))) {
             writer.writeNext(gameResult.toCSVRecord());
         } catch (IOException e) {
             // NOTE: In a full implementation, we would log this error and possibly alert the user
             // NOTE: For this project, you do not need unit tests for handling this exception.
+        }
+    }
+
+    public static StatsFile load() {
+        try {
+            return new StatsFile(
+                LocalDateTime.now().minusDays(30),
+                new CSVReader(new FileReader(FILENAME))
+            );
+        } catch(IOException e) {
+            // NOTE: In a full implementation, we would log this error and possibly alert the user
+            return null;
         }
     }
 }

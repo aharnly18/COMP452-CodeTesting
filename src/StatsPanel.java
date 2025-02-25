@@ -83,7 +83,7 @@ public class StatsPanel extends JPanel {
     }
 
     private void updateResultsPanel(){
-        GameStats stats = new StatsFile();
+        GameStats stats = StatsFile.load();
 
         int[] gamesInBins = stats.numGamesInBins(BIN_EDGES);
         for(int binIndex=0; binIndex<BIN_EDGES.length; binIndex++) {
