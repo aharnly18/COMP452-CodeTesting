@@ -9,10 +9,20 @@ public class ComputerGuessesGame {
     private int lowerBound; // correct number is >= lowerBound
 
     public ComputerGuessesGame(){
-        numGuesses = -1;
-        upperBound = 1000;
-        lowerBound = 1;
+        this (-1, 1000, 1);
         calculateNextGuess();
+    }
+
+    public ComputerGuessesGame(int upperBound, int lowerBound){
+        this (-1, upperBound, lowerBound);
+        calculateNextGuess();
+    }
+
+    public ComputerGuessesGame(int lastGuess, int upperBound, int lowerBound){
+        numGuesses = -1;
+        this.upperBound = upperBound;
+        this.lowerBound = lowerBound;
+        this.lastGuess = lastGuess;
     }
 
     public void guessLower(){
@@ -38,4 +48,11 @@ public class ComputerGuessesGame {
         return numGuesses;
     }
 
+    public int getLowerBound() {
+        return lowerBound;
+    }
+
+    public int getUpperBound() {
+        return upperBound;
+    }
 }
