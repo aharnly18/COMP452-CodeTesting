@@ -31,7 +31,7 @@ public class StatsFile extends GameStats {
                 // values should have the date and the number of guesses as the two fields
                 try {
                     GameResult result = GameResult.fromCSVRecord(record);
-                    if (result.timestamp.isAfter(limit)) { // TODO: be able to test this???
+                    if (result.timestamp.isAfter(limit)) {
                         statsMap.put(result.numGuesses, 1 + statsMap.getOrDefault(result.numGuesses, 0));
                     }
                 } catch (NumberFormatException nfe) {

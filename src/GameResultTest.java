@@ -49,7 +49,4 @@ public class GameResultTest {
         assertEquals(4, gameResult.getNumGuesses());
 
     }
-
-    //  TODO: should i test wrong numbers, like -1?
-
 }

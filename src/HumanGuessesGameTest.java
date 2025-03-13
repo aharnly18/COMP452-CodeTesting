@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HumanGuessesGameTest {
 
-    // TODO: should I test for guesses outside of the bounds??
-
     // should I test the constructor??
     @Test
     void constructor() {
