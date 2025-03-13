@@ -33,4 +33,12 @@ public class GameResult {
         int numGuesses = Integer.parseInt(record[1]);
         return new GameResult(timestamp, true, 0, numGuesses);
     }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public int getNumGuesses() {
+        return numGuesses;
+    }
 }
