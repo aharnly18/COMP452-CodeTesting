@@ -31,7 +31,7 @@ public class StatsFile extends GameStats {
                 // values should have the date and the number of guesses as the two fields
                 try {
                     GameResult result = GameResult.fromCSVRecord(record);
-                    if (result.timestamp.isAfter(limit)) {
+                    if (result.timestamp.isAfter(limit)) { // TODO: be able to test this???
                         statsMap.put(result.numGuesses, 1 + statsMap.getOrDefault(result.numGuesses, 0));
                     }
                 } catch (NumberFormatException nfe) {
@@ -49,6 +49,10 @@ public class StatsFile extends GameStats {
             // NOTE: In a full implementation, we would log this error and alert the user
             // NOTE: For this project, you do not need unit tests for handling this exception.
         }
+    }
+
+    public StatsFile(SortedMap<Integer, Integer> map) {
+        statsMap = map;
     }
 
     @Override

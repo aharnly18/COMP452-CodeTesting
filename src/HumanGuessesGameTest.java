@@ -1,10 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HumanGuessesGameTest {
@@ -22,7 +17,7 @@ public class HumanGuessesGameTest {
 
     // tests for makeGuess
 
-    // using dependency injection
+    //using dependency injection
     @Test
     void makeCorrectGuess() {
         HumanGuessesGame humanGuessesGame = new HumanGuessesGame(10);
@@ -31,7 +26,7 @@ public class HumanGuessesGameTest {
         assertTrue(humanGuessesGame.isDone());
     }
 
-    // using dependency injection
+    //using dependency injection
     @Test
     void makeLowGuess() {
         HumanGuessesGame humanGuessesGame = new HumanGuessesGame(10);
@@ -40,7 +35,7 @@ public class HumanGuessesGameTest {
         assertFalse(humanGuessesGame.isDone());
     }
 
-    // using dependency injection
+    //using dependency injection
     @Test
     void makeHighGuess() {
         HumanGuessesGame humanGuessesGame = new HumanGuessesGame(10);

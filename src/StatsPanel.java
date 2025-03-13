@@ -68,6 +68,12 @@ public class StatsPanel extends JPanel {
         });
     }
 
+    private void clearResults(){
+        for(JLabel lbl : resultsLabels){
+            lbl.setText("--");
+        }
+    }
+
     private String getBinName(int binIndex) {
         if (binIndex == BIN_EDGES.length - 1) {
             // last bin
@@ -83,6 +89,8 @@ public class StatsPanel extends JPanel {
     }
 
     private void updateResultsPanel(){
+        clearResults();
+
         GameStats stats = StatsFile.load();
 
         int[] gamesInBins = stats.numGamesInBins(BIN_EDGES);

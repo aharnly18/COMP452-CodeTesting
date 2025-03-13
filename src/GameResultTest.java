@@ -8,16 +8,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameResultTest {
 
-    // tests for toCSVRecord
+    // test for toCSVRecord
     @Test
     void csvRecordTest() {
         String[] record = {"2020-02-24T20:10:29.110278500", "4"};
-//        GameResult gameResult = GameResult.fromCSVRecord(record);
         GameResult gameResult = new GameResult(LocalDateTime.parse("2020-02-24T20:10:29.110278500"), true, 10, 10);
         assertEquals(record, gameResult.toCSVRecord());
     }
-
-    // TODO: any others?
 
     // tests for fromCSVRecord
     @Test
